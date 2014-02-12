@@ -18,6 +18,15 @@
 		08E88BF418AB0D5A008538D3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08E88BD318AB0D5A008538D3 /* Cocoa.framework */; };
 		08E88BFC18AB0D5A008538D3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 08E88BFA18AB0D5A008538D3 /* InfoPlist.strings */; };
 		08E88BFE18AB0D5A008538D3 /* Test_ScrollviewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E88BFD18AB0D5A008538D3 /* Test_ScrollviewTests.m */; };
+		08E88C0918ABBB18008538D3 /* SemiScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E88C0818ABBB18008538D3 /* SemiScrollView.m */; };
+		08E88C2C18ABC1E7008538D3 /* ConstraintUtilities-Description.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E88C1218ABC1E7008538D3 /* ConstraintUtilities-Description.m */; };
+		08E88C2D18ABC1E7008538D3 /* ConstraintUtilities-Install.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E88C1518ABC1E7008538D3 /* ConstraintUtilities-Install.m */; };
+		08E88C2E18ABC1E7008538D3 /* ConstraintUtilities-Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E88C1818ABC1E7008538D3 /* ConstraintUtilities-Layout.m */; };
+		08E88C2F18ABC1E7008538D3 /* ConstraintUtilities-Matching.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E88C1E18ABC1E7008538D3 /* ConstraintUtilities-Matching.m */; };
+		08E88C3018ABC1E7008538D3 /* NSObject-Description.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E88C2418ABC1E7008538D3 /* NSObject-Description.m */; };
+		08E88C3118ABC1E7008538D3 /* NSObject-Nametag.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E88C2618ABC1E7008538D3 /* NSObject-Nametag.m */; };
+		08E88C3218ABC1E7008538D3 /* NSView+BackgroundColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E88C2918ABC1E7008538D3 /* NSView+BackgroundColor.m */; };
+		08E88C3318ABC1E7008538D3 /* View-Nametag.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E88C2B18ABC1E7008538D3 /* View-Nametag.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +59,28 @@
 		08E88BF918AB0D5A008538D3 /* Test ScrollviewTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Test ScrollviewTests-Info.plist"; sourceTree = "<group>"; };
 		08E88BFB18AB0D5A008538D3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		08E88BFD18AB0D5A008538D3 /* Test_ScrollviewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Test_ScrollviewTests.m; sourceTree = "<group>"; };
+		08E88C0718ABBB18008538D3 /* SemiScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SemiScrollView.h; sourceTree = "<group>"; };
+		08E88C0818ABBB18008538D3 /* SemiScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SemiScrollView.m; sourceTree = "<group>"; };
+		08E88C1118ABC1E7008538D3 /* ConstraintUtilities-Description.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ConstraintUtilities-Description.h"; sourceTree = "<group>"; };
+		08E88C1218ABC1E7008538D3 /* ConstraintUtilities-Description.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ConstraintUtilities-Description.m"; sourceTree = "<group>"; };
+		08E88C1418ABC1E7008538D3 /* ConstraintUtilities-Install.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ConstraintUtilities-Install.h"; sourceTree = "<group>"; };
+		08E88C1518ABC1E7008538D3 /* ConstraintUtilities-Install.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ConstraintUtilities-Install.m"; sourceTree = "<group>"; };
+		08E88C1718ABC1E7008538D3 /* ConstraintUtilities-Layout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ConstraintUtilities-Layout.h"; sourceTree = "<group>"; };
+		08E88C1818ABC1E7008538D3 /* ConstraintUtilities-Layout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ConstraintUtilities-Layout.m"; sourceTree = "<group>"; };
+		08E88C1A18ABC1E7008538D3 /* Constraints-CreationMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Constraints-CreationMacros.h"; sourceTree = "<group>"; };
+		08E88C1B18ABC1E7008538D3 /* Constraints-Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Constraints-Utility.h"; sourceTree = "<group>"; };
+		08E88C1D18ABC1E7008538D3 /* ConstraintUtilities-Matching.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ConstraintUtilities-Matching.h"; sourceTree = "<group>"; };
+		08E88C1E18ABC1E7008538D3 /* ConstraintUtilities-Matching.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ConstraintUtilities-Matching.m"; sourceTree = "<group>"; };
+		08E88C1F18ABC1E7008538D3 /* ConstraintPack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstraintPack.h; sourceTree = "<group>"; };
+		08E88C2118ABC1E7008538D3 /* NametagUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NametagUtilities.h; sourceTree = "<group>"; };
+		08E88C2318ABC1E7008538D3 /* NSObject-Description.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject-Description.h"; sourceTree = "<group>"; };
+		08E88C2418ABC1E7008538D3 /* NSObject-Description.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject-Description.m"; sourceTree = "<group>"; };
+		08E88C2518ABC1E7008538D3 /* NSObject-Nametag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject-Nametag.h"; sourceTree = "<group>"; };
+		08E88C2618ABC1E7008538D3 /* NSObject-Nametag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject-Nametag.m"; sourceTree = "<group>"; };
+		08E88C2818ABC1E7008538D3 /* NSView+BackgroundColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSView+BackgroundColor.h"; sourceTree = "<group>"; };
+		08E88C2918ABC1E7008538D3 /* NSView+BackgroundColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSView+BackgroundColor.m"; sourceTree = "<group>"; };
+		08E88C2A18ABC1E7008538D3 /* View-Nametag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "View-Nametag.h"; sourceTree = "<group>"; };
+		08E88C2B18ABC1E7008538D3 /* View-Nametag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "View-Nametag.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,7 +148,10 @@
 			children = (
 				08E88BE518AB0D5A008538D3 /* SemiAppDelegate.h */,
 				08E88BE618AB0D5A008538D3 /* SemiAppDelegate.m */,
+				08E88C0718ABBB18008538D3 /* SemiScrollView.h */,
+				08E88C0818ABBB18008538D3 /* SemiScrollView.m */,
 				08E88BE818AB0D5A008538D3 /* MainMenu.xib */,
+				08E88C0F18ABC1E7008538D3 /* Constraints Pack */,
 				08E88BEB18AB0D5A008538D3 /* Images.xcassets */,
 				08E88BDA18AB0D5A008538D3 /* Supporting Files */,
 			);
@@ -152,6 +186,97 @@
 				08E88BFA18AB0D5A008538D3 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		08E88C0F18ABC1E7008538D3 /* Constraints Pack */ = {
+			isa = PBXGroup;
+			children = (
+				08E88C1018ABC1E7008538D3 /* Constraint Description */,
+				08E88C1318ABC1E7008538D3 /* Constraint Install */,
+				08E88C1618ABC1E7008538D3 /* Constraint Layout */,
+				08E88C1918ABC1E7008538D3 /* Constraint Macros */,
+				08E88C1C18ABC1E7008538D3 /* Constraint Matching */,
+				08E88C1F18ABC1E7008538D3 /* ConstraintPack.h */,
+				08E88C2018ABC1E7008538D3 /* Nametag Utilities */,
+			);
+			path = "Constraints Pack";
+			sourceTree = "<group>";
+		};
+		08E88C1018ABC1E7008538D3 /* Constraint Description */ = {
+			isa = PBXGroup;
+			children = (
+				08E88C1118ABC1E7008538D3 /* ConstraintUtilities-Description.h */,
+				08E88C1218ABC1E7008538D3 /* ConstraintUtilities-Description.m */,
+			);
+			path = "Constraint Description";
+			sourceTree = "<group>";
+		};
+		08E88C1318ABC1E7008538D3 /* Constraint Install */ = {
+			isa = PBXGroup;
+			children = (
+				08E88C1418ABC1E7008538D3 /* ConstraintUtilities-Install.h */,
+				08E88C1518ABC1E7008538D3 /* ConstraintUtilities-Install.m */,
+			);
+			path = "Constraint Install";
+			sourceTree = "<group>";
+		};
+		08E88C1618ABC1E7008538D3 /* Constraint Layout */ = {
+			isa = PBXGroup;
+			children = (
+				08E88C1718ABC1E7008538D3 /* ConstraintUtilities-Layout.h */,
+				08E88C1818ABC1E7008538D3 /* ConstraintUtilities-Layout.m */,
+			);
+			path = "Constraint Layout";
+			sourceTree = "<group>";
+		};
+		08E88C1918ABC1E7008538D3 /* Constraint Macros */ = {
+			isa = PBXGroup;
+			children = (
+				08E88C1A18ABC1E7008538D3 /* Constraints-CreationMacros.h */,
+				08E88C1B18ABC1E7008538D3 /* Constraints-Utility.h */,
+			);
+			path = "Constraint Macros";
+			sourceTree = "<group>";
+		};
+		08E88C1C18ABC1E7008538D3 /* Constraint Matching */ = {
+			isa = PBXGroup;
+			children = (
+				08E88C1D18ABC1E7008538D3 /* ConstraintUtilities-Matching.h */,
+				08E88C1E18ABC1E7008538D3 /* ConstraintUtilities-Matching.m */,
+			);
+			path = "Constraint Matching";
+			sourceTree = "<group>";
+		};
+		08E88C2018ABC1E7008538D3 /* Nametag Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				08E88C2118ABC1E7008538D3 /* NametagUtilities.h */,
+				08E88C2218ABC1E7008538D3 /* NSObject */,
+				08E88C2718ABC1E7008538D3 /* View */,
+			);
+			path = "Nametag Utilities";
+			sourceTree = "<group>";
+		};
+		08E88C2218ABC1E7008538D3 /* NSObject */ = {
+			isa = PBXGroup;
+			children = (
+				08E88C2318ABC1E7008538D3 /* NSObject-Description.h */,
+				08E88C2418ABC1E7008538D3 /* NSObject-Description.m */,
+				08E88C2518ABC1E7008538D3 /* NSObject-Nametag.h */,
+				08E88C2618ABC1E7008538D3 /* NSObject-Nametag.m */,
+			);
+			path = NSObject;
+			sourceTree = "<group>";
+		};
+		08E88C2718ABC1E7008538D3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				08E88C2818ABC1E7008538D3 /* NSView+BackgroundColor.h */,
+				08E88C2918ABC1E7008538D3 /* NSView+BackgroundColor.m */,
+				08E88C2A18ABC1E7008538D3 /* View-Nametag.h */,
+				08E88C2B18ABC1E7008538D3 /* View-Nametag.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,7 +379,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				08E88BE718AB0D5A008538D3 /* SemiAppDelegate.m in Sources */,
+				08E88C3318ABC1E7008538D3 /* View-Nametag.m in Sources */,
+				08E88C2F18ABC1E7008538D3 /* ConstraintUtilities-Matching.m in Sources */,
+				08E88C3118ABC1E7008538D3 /* NSObject-Nametag.m in Sources */,
+				08E88C3218ABC1E7008538D3 /* NSView+BackgroundColor.m in Sources */,
+				08E88C3018ABC1E7008538D3 /* NSObject-Description.m in Sources */,
+				08E88C0918ABBB18008538D3 /* SemiScrollView.m in Sources */,
+				08E88C2C18ABC1E7008538D3 /* ConstraintUtilities-Description.m in Sources */,
 				08E88BE018AB0D5A008538D3 /* main.m in Sources */,
+				08E88C2D18ABC1E7008538D3 /* ConstraintUtilities-Install.m in Sources */,
+				08E88C2E18ABC1E7008538D3 /* ConstraintUtilities-Layout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
