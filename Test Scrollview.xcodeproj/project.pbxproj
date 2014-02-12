@@ -18,7 +18,6 @@
 		08E88BF418AB0D5A008538D3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08E88BD318AB0D5A008538D3 /* Cocoa.framework */; };
 		08E88BFC18AB0D5A008538D3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 08E88BFA18AB0D5A008538D3 /* InfoPlist.strings */; };
 		08E88BFE18AB0D5A008538D3 /* Test_ScrollviewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E88BFD18AB0D5A008538D3 /* Test_ScrollviewTests.m */; };
-		08E88C0918ABBB18008538D3 /* SemiScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E88C0818ABBB18008538D3 /* SemiScrollView.m */; };
 		08E88C2C18ABC1E7008538D3 /* ConstraintUtilities-Description.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E88C1218ABC1E7008538D3 /* ConstraintUtilities-Description.m */; };
 		08E88C2D18ABC1E7008538D3 /* ConstraintUtilities-Install.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E88C1518ABC1E7008538D3 /* ConstraintUtilities-Install.m */; };
 		08E88C2E18ABC1E7008538D3 /* ConstraintUtilities-Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E88C1818ABC1E7008538D3 /* ConstraintUtilities-Layout.m */; };
@@ -59,8 +58,6 @@
 		08E88BF918AB0D5A008538D3 /* Test ScrollviewTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Test ScrollviewTests-Info.plist"; sourceTree = "<group>"; };
 		08E88BFB18AB0D5A008538D3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		08E88BFD18AB0D5A008538D3 /* Test_ScrollviewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Test_ScrollviewTests.m; sourceTree = "<group>"; };
-		08E88C0718ABBB18008538D3 /* SemiScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SemiScrollView.h; sourceTree = "<group>"; };
-		08E88C0818ABBB18008538D3 /* SemiScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SemiScrollView.m; sourceTree = "<group>"; };
 		08E88C1118ABC1E7008538D3 /* ConstraintUtilities-Description.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ConstraintUtilities-Description.h"; sourceTree = "<group>"; };
 		08E88C1218ABC1E7008538D3 /* ConstraintUtilities-Description.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ConstraintUtilities-Description.m"; sourceTree = "<group>"; };
 		08E88C1418ABC1E7008538D3 /* ConstraintUtilities-Install.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ConstraintUtilities-Install.h"; sourceTree = "<group>"; };
@@ -148,8 +145,6 @@
 			children = (
 				08E88BE518AB0D5A008538D3 /* SemiAppDelegate.h */,
 				08E88BE618AB0D5A008538D3 /* SemiAppDelegate.m */,
-				08E88C0718ABBB18008538D3 /* SemiScrollView.h */,
-				08E88C0818ABBB18008538D3 /* SemiScrollView.m */,
 				08E88BE818AB0D5A008538D3 /* MainMenu.xib */,
 				08E88C0F18ABC1E7008538D3 /* Constraints Pack */,
 				08E88BEB18AB0D5A008538D3 /* Images.xcassets */,
@@ -384,7 +379,6 @@
 				08E88C3118ABC1E7008538D3 /* NSObject-Nametag.m in Sources */,
 				08E88C3218ABC1E7008538D3 /* NSView+BackgroundColor.m in Sources */,
 				08E88C3018ABC1E7008538D3 /* NSObject-Description.m in Sources */,
-				08E88C0918ABBB18008538D3 /* SemiScrollView.m in Sources */,
 				08E88C2C18ABC1E7008538D3 /* ConstraintUtilities-Description.m in Sources */,
 				08E88BE018AB0D5A008538D3 /* main.m in Sources */,
 				08E88C2D18ABC1E7008538D3 /* ConstraintUtilities-Install.m in Sources */,
