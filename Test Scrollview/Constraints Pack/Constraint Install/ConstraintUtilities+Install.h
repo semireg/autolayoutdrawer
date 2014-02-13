@@ -59,41 +59,41 @@ typedef enum
 #define PREPCONSTRAINTS(VIEW) [VIEW setTranslatesAutoresizingMaskIntoConstraints:NO]
 
 // Install and remove arrays of constraints created by visual formats
-void InstallConstraints(NSArray *constraints, NSUInteger priority, NSString *nametag);
-void InstallConstraint(NSLayoutConstraint *constraint, NSUInteger priority, NSString *nametag);
-void RemoveConstraints(NSArray *constraints);
+void SE_InstallConstraints(NSArray *constraints, NSUInteger priority, NSString *nametag);
+void SE_InstallConstraint(NSLayoutConstraint *constraint, NSUInteger priority, NSString *nametag);
+void SE_RemoveConstraints(NSArray *constraints);
 
 // Retrieve IB-generated constraints from a view controller root
-NSArray *ConstraintsSourcedFromIB(NSArray *constraints);
+NSArray *SE_ConstraintsSourcedFromIB(NSArray *constraints);
 
 // If you use in production code, please make sure to add
 // namespace indicators to class category methods
 
 // Find nearest common ancestor
 @interface VIEW_CLASS (HierarchySupport)
-@property (nonatomic, readonly) NSArray *superviews;
-@property (nonatomic, readonly) NSArray *allSubviews;
-- (BOOL) isAncestorOfView: (VIEW_CLASS *) aView;
-- (VIEW_CLASS *) nearestCommonAncestorToView: (VIEW_CLASS *) aView;
+@property (nonatomic, readonly) NSArray *SE_superviews;
+@property (nonatomic, readonly) NSArray *SE_allSubviews;
+- (BOOL) SE_isAncestorOfView: (VIEW_CLASS *) aView;
+- (VIEW_CLASS *) SE_nearestCommonAncestorToView: (VIEW_CLASS *) aView;
 @end
 
 // Convenience
 @interface VIEW_CLASS (ConstraintReadyViews)
-+ (instancetype) view;
++ (instancetype) SE_view;
 @end
 
 // Access items in a friendlier manner
 @interface NSLayoutConstraint (ViewHierarchy)
-@property (nonatomic, readonly) VIEW_CLASS *firstView;
-@property (nonatomic, readonly) VIEW_CLASS *secondView;
-@property (nonatomic, readonly) BOOL isUnary;
-@property (nonatomic, readonly) VIEW_CLASS *likelyOwner;
-@property (nonatomic, readonly) ConstraintSourceType sourceType;
+@property (nonatomic, readonly) VIEW_CLASS *SE_firstView;
+@property (nonatomic, readonly) VIEW_CLASS *SE_secondView;
+@property (nonatomic, readonly) BOOL SE_isUnary;
+@property (nonatomic, readonly) VIEW_CLASS *SE_likelyOwner;
+@property (nonatomic, readonly) ConstraintSourceType SE_sourceType;
 @end
 
 // Install and remove constraints to and from their natural location
 @interface NSLayoutConstraint (SelfInstall)
-- (BOOL) install;
-- (BOOL) install: (float) priority;
-- (void) remove;
+- (BOOL) SE_install;
+- (BOOL) SE_install: (float) priority;
+- (void) SE_remove;
 @end

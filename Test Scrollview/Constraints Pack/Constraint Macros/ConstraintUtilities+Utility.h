@@ -67,9 +67,9 @@
     NSArray *_tmpArray = [NSArray arrayWithObjects: __VA_ARGS__]; \
     for (NSObject *_eachItem in _tmpArray) { \
         if ([(_eachItem) isKindOfClass:[NSArray class]]) \
-            InstallConstraints((NSArray *) _eachItem, PRIORITY, NAME); \
+            SE_InstallConstraints((NSArray *) _eachItem, PRIORITY, NAME); \
         else \
-            InstallConstraints(@[_eachItem], PRIORITY, NAME);\
+            SE_InstallConstraints(@[_eachItem], PRIORITY, NAME);\
     }}
 
 // Convenience entry point to avoid forcing semaphore at the end

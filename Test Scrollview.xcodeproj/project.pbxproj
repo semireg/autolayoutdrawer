@@ -26,6 +26,7 @@
 		08E88C5618AC30CF008538D3 /* NSObject-Nametag.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E88C4B18AC30CF008538D3 /* NSObject-Nametag.m */; };
 		08E88C5718AC30CF008538D3 /* NSView+BackgroundColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E88C4E18AC30CF008538D3 /* NSView+BackgroundColor.m */; };
 		08E88C5818AC30CF008538D3 /* View-Nametag.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E88C5018AC30CF008538D3 /* View-Nametag.m */; };
+		08E88C5F18AC6D1C008538D3 /* NSView+Constraints.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E88C5E18AC6D1C008538D3 /* NSView+Constraints.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,8 @@
 		08E88C4E18AC30CF008538D3 /* NSView+BackgroundColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSView+BackgroundColor.m"; sourceTree = "<group>"; };
 		08E88C4F18AC30CF008538D3 /* View-Nametag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "View-Nametag.h"; sourceTree = "<group>"; };
 		08E88C5018AC30CF008538D3 /* View-Nametag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "View-Nametag.m"; sourceTree = "<group>"; };
+		08E88C5D18AC6D1C008538D3 /* NSView+Constraints.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSView+Constraints.h"; sourceTree = "<group>"; };
+		08E88C5E18AC6D1C008538D3 /* NSView+Constraints.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSView+Constraints.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +189,7 @@
 		08E88C3418AC30CF008538D3 /* Constraints Pack */ = {
 			isa = PBXGroup;
 			children = (
+				08E88C5918AC6C79008538D3 /* Caylan's Additions */,
 				08E88C3518AC30CF008538D3 /* Constraint Description */,
 				08E88C3818AC30CF008538D3 /* Constraint Install */,
 				08E88C3B18AC30CF008538D3 /* Constraint Layout */,
@@ -272,6 +276,15 @@
 				08E88C5018AC30CF008538D3 /* View-Nametag.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		08E88C5918AC6C79008538D3 /* Caylan's Additions */ = {
+			isa = PBXGroup;
+			children = (
+				08E88C5D18AC6D1C008538D3 /* NSView+Constraints.h */,
+				08E88C5E18AC6D1C008538D3 /* NSView+Constraints.m */,
+			);
+			name = "Caylan's Additions";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -375,6 +388,7 @@
 			files = (
 				08E88C5118AC30CF008538D3 /* ConstraintUtilities+Description.m in Sources */,
 				08E88BE718AB0D5A008538D3 /* SemiAppDelegate.m in Sources */,
+				08E88C5F18AC6D1C008538D3 /* NSView+Constraints.m in Sources */,
 				08E88BE018AB0D5A008538D3 /* main.m in Sources */,
 				08E88C5318AC30CF008538D3 /* ConstraintUtilities+Layout.m in Sources */,
 				08E88C5418AC30CF008538D3 /* ConstraintUtilities+Matching.m in Sources */,

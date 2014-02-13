@@ -40,12 +40,12 @@
 @interface VIEW_CLASS (NamedConstraintSupport)
 
 // Single
-- (NSLayoutConstraint *) constraintNamed: (NSString *) aName;
-- (NSLayoutConstraint *) constraintNamed: (NSString *) aName matchingView: (VIEW_CLASS *) view;
+- (NSLayoutConstraint *) SE_constraintNamed: (NSString *) aName;
+- (NSLayoutConstraint *) SE_constraintNamed: (NSString *) aName matchingView: (VIEW_CLASS *) view;
 
 // Multiple
-- (NSArray *) constraintsNamed: (NSString *) aName;
-- (NSArray *) constraintsNamed: (NSString *) aName matchingView: (VIEW_CLASS *) view;
+- (NSArray *) SE_constraintsNamed: (NSString *) aName;
+- (NSArray *) SE_constraintsNamed: (NSString *) aName matchingView: (VIEW_CLASS *) view;
 @end
 
 /*
@@ -57,37 +57,37 @@
 
 #pragma mark - Constraint Matching
 @interface NSLayoutConstraint (ConstraintMatching)
-- (BOOL) isEqualToLayoutConstraint: (NSLayoutConstraint *) constraint;
-- (BOOL) isEqualToLayoutConstraintConsideringPriority: (NSLayoutConstraint *) constraint;
-- (BOOL) refersToView: (VIEW_CLASS *) aView;
-@property (nonatomic, readonly) BOOL isHorizontal;
+- (BOOL) SE_isEqualToLayoutConstraint: (NSLayoutConstraint *) constraint;
+- (BOOL) SE_isEqualToLayoutConstraintConsideringPriority: (NSLayoutConstraint *) constraint;
+- (BOOL) SE_refersToView: (VIEW_CLASS *) aView;
+@property (nonatomic, readonly) BOOL SE_isHorizontal;
 @end
 
 #pragma mark - Managing Matching Constraints
 @interface VIEW_CLASS (ConstraintMatching)
-@property (nonatomic, readonly) NSArray *allConstraints;
-@property (nonatomic, readonly) NSArray *referencingConstraintsInSuperviews;
-@property (nonatomic, readonly) NSArray *referencingConstraints;
+@property (nonatomic, readonly) NSArray *SE_allConstraints;
+@property (nonatomic, readonly) NSArray *SE_referencingConstraintsInSuperviews;
+@property (nonatomic, readonly) NSArray *SE_referencingConstraints;
 
 // Retrieving constraints
-- (NSLayoutConstraint *) constraintMatchingConstraint: (NSLayoutConstraint *) aConstraint;
-- (NSArray *) constraintsMatchingConstraints: (NSArray *) constraints;
+- (NSLayoutConstraint *) SE_constraintMatchingConstraint: (NSLayoutConstraint *) aConstraint;
+- (NSArray *) SE_constraintsMatchingConstraints: (NSArray *) constraints;
 
 // Constraints referencing a given view
-- (NSArray *) constraintsReferencingView: (VIEW_CLASS *) view;
-- (NSArray *) constraintsReferencingView: (VIEW_CLASS *) firstView andView: (VIEW_CLASS *) secondView;
-- (NSArray *) IBSourcedConstraintsReferencingView: (VIEW_CLASS *) theView;
+- (NSArray *) SE_constraintsReferencingView: (VIEW_CLASS *) view;
+- (NSArray *) SE_constraintsReferencingView: (VIEW_CLASS *) firstView andView: (VIEW_CLASS *) secondView;
+- (NSArray *) SE_IBSourcedConstraintsReferencingView: (VIEW_CLASS *) theView;
 
 // Removing matching constraints
-- (void) removeMatchingConstraint: (NSLayoutConstraint *) aConstraint;
-- (void) removeMatchingConstraints: (NSArray *) anArray;
+- (void) SE_removeMatchingConstraint: (NSLayoutConstraint *) aConstraint;
+- (void) SE_removeMatchingConstraints: (NSArray *) anArray;
 
 // Removing named constraints
-- (void) removeConstraintsNamed: (NSString *) name;
-- (void) removeConstraintsNamed: (NSString *) name matchingView: (VIEW_CLASS *) view;
+- (void) SE_removeConstraintsNamed: (NSString *) name;
+- (void) SE_removeConstraintsNamed: (NSString *) name matchingView: (VIEW_CLASS *) view;
 
 // Kicking the ball around a bit here
-@property (nonatomic, readonly) NSArray *widthConstraints;
-@property (nonatomic, readonly) NSArray *heightConstraints;
+@property (nonatomic, readonly) NSArray *SE_widthConstraints;
+@property (nonatomic, readonly) NSArray *SE_heightConstraints;
 
 @end

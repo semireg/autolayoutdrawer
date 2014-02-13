@@ -66,7 +66,7 @@ void SizeAndConstrainToSuperview(VIEW_CLASS *view, float side, NSUInteger  prior
          @"V:[view]->=0-|"])
     {
         NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:format options:0 metrics:metrics views:bindings];
-        InstallConstraints(constraints, priority, @"Constrain to Superview");
+        SE_InstallConstraints(constraints, priority, @"Constrain to Superview");
     }
 }
 
@@ -83,7 +83,7 @@ void ConstrainToSuperview(VIEW_CLASS *view, NSUInteger priority)
                                @"V:[view]->=0-|"])
     {
         NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:format options:0 metrics:nil views:@{@"view":view}];
-        InstallConstraints(constraints, priority, @"Constrain to Superview");
+        SE_InstallConstraints(constraints, priority, @"Constrain to Superview");
     }
 }
 
@@ -94,7 +94,7 @@ void StretchHorizontallyToSuperview(VIEW_CLASS *view, CGFloat indent, NSUInteger
     NSDictionary *bindings = NSDictionaryOfVariableBindings(view);
     NSDictionary *metrics = @{@"indent":@(indent)};
     NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:format options:0 metrics:metrics views:bindings];
-    InstallConstraints(constraints, priority, @"Stretch to Superview");
+    SE_InstallConstraints(constraints, priority, @"Stretch to Superview");
 }
 
 void StretchVerticallyToSuperview(VIEW_CLASS *view, CGFloat indent, NSUInteger priority)
@@ -103,7 +103,7 @@ void StretchVerticallyToSuperview(VIEW_CLASS *view, CGFloat indent, NSUInteger p
     NSDictionary *bindings = NSDictionaryOfVariableBindings(view);
     NSDictionary *metrics = @{@"indent":@(indent)};
     NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:format options:0 metrics:metrics views:bindings];
-    InstallConstraints(constraints, priority, @"Stretch to Superview");
+    SE_InstallConstraints(constraints, priority, @"Stretch to Superview");
 }
 
 void StretchToSuperview(VIEW_CLASS *view, CGFloat indent, NSUInteger priority)
@@ -124,7 +124,7 @@ void _ConstrainViewSize(VIEW_CLASS *view, CGSize size, NSUInteger priority, NSSt
          ])
     {
         NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:format options:0 metrics:metrics views:bindings];
-        InstallConstraints(constraints, priority, @"Sizing");
+        SE_InstallConstraints(constraints, priority, @"Sizing");
     }
 }
 
@@ -150,7 +150,7 @@ void MatchSizeH(VIEW_CLASS *view1, VIEW_CLASS *view2, NSUInteger priority)
     NSString *formatString = @"H:[view1(==view2)]";
     NSDictionary *bindings = NSDictionaryOfVariableBindings(view1, view2);
     NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:formatString options:0 metrics:nil views:bindings];
-    InstallConstraints(constraints, priority, @"Match Horizontal Size");
+    SE_InstallConstraints(constraints, priority, @"Match Horizontal Size");
 }
 
 void MatchSizeV(VIEW_CLASS *view1, VIEW_CLASS *view2, NSUInteger priority)
@@ -158,7 +158,7 @@ void MatchSizeV(VIEW_CLASS *view1, VIEW_CLASS *view2, NSUInteger priority)
     NSString *formatString = @"V:[view1(==view2)]";
     NSDictionary *bindings = NSDictionaryOfVariableBindings(view1, view2);
     NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:formatString options:0 metrics:nil views:bindings];
-    InstallConstraints(constraints, priority, @"Match Vertical Size");}
+    SE_InstallConstraints(constraints, priority, @"Match Vertical Size");}
 
 void MatchSize(VIEW_CLASS *view1, VIEW_CLASS *view2, NSUInteger priority)
 {
@@ -200,7 +200,7 @@ void BuildLineWithSpacing(NSArray *views, NSLayoutFormatOptions alignment, NSStr
         view2 = views[i];
         NSDictionary *bindings = NSDictionaryOfVariableBindings(view1, view2);
         NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:format options:0 metrics:nil views:bindings];
-        InstallConstraints(constraints, priority, @"Build Line");
+        SE_InstallConstraints(constraints, priority, @"Build Line");
     }
 }
 
@@ -243,7 +243,7 @@ void PseudoDistributeCenters(NSArray *views, NSLayoutFormatOptions alignment, NS
                       attribute:endAttribute
                       multiplier: multiplier
                       constant: 0];
-        [constraint install:priority];
+        [constraint SE_install:priority];
         
         // Install alignment
         constraint = [NSLayoutConstraint
@@ -254,7 +254,7 @@ void PseudoDistributeCenters(NSArray *views, NSLayoutFormatOptions alignment, NS
                       attribute:alignmentAttribute
                       multiplier:1
                       constant:0];
-        [constraint install:priority];
+        [constraint SE_install:priority];
     }
 }
 
@@ -295,7 +295,7 @@ void PseudoDistributeWithSpacers(VIEW_CLASS *superview, NSArray *views, NSLayout
         NSDictionary *bindings = NSDictionaryOfVariableBindings(view1, view2, spacer, firstspacer);
         
         NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:format options:alignment metrics:nil views:bindings];
-        InstallConstraints(constraints, priority, @"PseudoDistribution");
+        SE_InstallConstraints(constraints, priority, @"PseudoDistribution");
     }
 }
 
@@ -305,7 +305,7 @@ void FloatViewsH(VIEW_CLASS *firstView, VIEW_CLASS *lastView, NSUInteger priorit
     if (!firstView.superview) return;
     if (!lastView.superview) return;
     
-    VIEW_CLASS *nca = [firstView nearestCommonAncestorToView:lastView];
+    VIEW_CLASS *nca = [firstView SE_nearestCommonAncestorToView:lastView];
     if (!nca) return;
     if (nca == firstView)
         nca = firstView.superview;
@@ -321,8 +321,8 @@ void FloatViewsH(VIEW_CLASS *firstView, VIEW_CLASS *lastView, NSUInteger priorit
     // To assist with debugging, this gives the spacer a height of 40
     for (VIEW_CLASS *view in @[spacer1, spacer2])
     {
-        view.nametag = @"SpacerH";
-        InstallConstraints([NSLayoutConstraint constraintsWithVisualFormat:@"V:[view(==40)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(view)], 1, nil);
+        view.SE_nametag = @"SpacerH";
+        SE_InstallConstraints([NSLayoutConstraint constraintsWithVisualFormat:@"V:[view(==40)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(view)], 1, nil);
     }
     
     // Add spacers to left and right
@@ -341,7 +341,7 @@ void FloatViewsV(VIEW_CLASS *firstView, VIEW_CLASS *lastView, NSUInteger priorit
     if (!firstView.superview) return;
     if (!lastView.superview) return;
     
-    VIEW_CLASS *nca = [firstView nearestCommonAncestorToView:lastView];
+    VIEW_CLASS *nca = [firstView SE_nearestCommonAncestorToView:lastView];
     if (!nca) return;
     if (nca == firstView)
         nca = firstView.superview;
@@ -357,8 +357,8 @@ void FloatViewsV(VIEW_CLASS *firstView, VIEW_CLASS *lastView, NSUInteger priorit
     // To assist with debugging, this gives the spacer a width of 40
     for (VIEW_CLASS *view in @[spacer1, spacer2])
     {
-        InstallConstraints([NSLayoutConstraint constraintsWithVisualFormat:@"H:[view(==40)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(view)], 1, nil);
-        view.nametag = @"SpacerV";
+        SE_InstallConstraints([NSLayoutConstraint constraintsWithVisualFormat:@"H:[view(==40)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(view)], 1, nil);
+        view.SE_nametag = @"SpacerV";
     }
     
     // Add spacers to top and bottom
@@ -375,7 +375,7 @@ void FloatViewsV(VIEW_CLASS *firstView, VIEW_CLASS *lastView, NSUInteger priorit
 void AlignView(VIEW_CLASS *view, NSLayoutAttribute attribute, NSInteger inset, NSUInteger priority)
 {
     NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:view attribute:attribute relatedBy:NSLayoutRelationEqual toItem:view.superview attribute:attribute multiplier:1 constant:inset];
-    [constraint install:priority];
+    [constraint SE_install:priority];
 }
 
 void CenterView(VIEW_CLASS *view, NSUInteger priority)
@@ -422,19 +422,19 @@ NSArray *ConstraintsPositioningView(VIEW_CLASS *view, CGPoint point)
 void PositionView(VIEW_CLASS *view, CGPoint point, NSUInteger priority)
 {
     NSArray *constraints = ConstraintsPositioningView(view, point);
-    InstallConstraints(constraints, priority, @"Position");
+    SE_InstallConstraints(constraints, priority, @"Position");
 }
 
 void Pin(VIEW_CLASS *view, NSString *format)
 {
     NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:format options:0 metrics:nil views:@{@"view":view}];
-    InstallConstraints(constraints, LayoutPriorityRequired, nil);
+    SE_InstallConstraints(constraints, LayoutPriorityRequired, nil);
 }
 
 void PinWithPriority(VIEW_CLASS *view, NSString *format, NSString *name, int priority)
 {
     NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:format options:0 metrics:nil views:@{@"view":view}];
-    InstallConstraints(constraints, priority, name);
+    SE_InstallConstraints(constraints, priority, name);
 }
 
 #pragma mark - Contrast View
@@ -448,8 +448,8 @@ void LoadContrastViewsOntoView(VIEW_CLASS *aView)
     
     // First, cover left half of the parent
     contrastView = [[VIEW_CLASS alloc] init];
-    contrastView.nametag = @"Contrast View Vertical";
-    contrastView.backgroundColor = bgColor;
+    contrastView.SE_nametag = @"Contrast View Vertical";
+    contrastView.SE_backgroundColor = bgColor;
     [aView addSubview:contrastView];
     contrastView.translatesAutoresizingMaskIntoConstraints = NO;
     
@@ -459,12 +459,12 @@ void LoadContrastViewsOntoView(VIEW_CLASS *aView)
     
     // Constrain width to half of parent
     constraint = [NSLayoutConstraint constraintWithItem:contrastView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:aView attribute:NSLayoutAttributeWidth multiplier:0.5f constant:0.0f];
-    [constraint install];
+    [constraint SE_install];
     
     // Then cover bottom half of parent
     contrastView = [[VIEW_CLASS alloc] init];
-    contrastView.nametag = @"Contrast View Horizontal";
-    contrastView.backgroundColor = bgColor;
+    contrastView.SE_nametag = @"Contrast View Horizontal";
+    contrastView.SE_backgroundColor = bgColor;
     [aView addSubview:contrastView];
     contrastView.translatesAutoresizingMaskIntoConstraints = NO;
     
@@ -474,5 +474,5 @@ void LoadContrastViewsOntoView(VIEW_CLASS *aView)
     
     // Constrain height to half of parent
     constraint = [NSLayoutConstraint constraintWithItem:contrastView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:aView attribute:NSLayoutAttributeHeight multiplier:0.5f constant:0.0f];
-    [constraint install];
+    [constraint SE_install];
 }

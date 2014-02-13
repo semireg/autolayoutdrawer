@@ -9,20 +9,20 @@
 
 @implementation NSObject (DebuggingExtensions)
 // Return 'Class description : hex memory address'
-- (NSString *) objectIdentifier
+- (NSString *) SE_objectIdentifier
 {
     return [NSString stringWithFormat:@"%@:0x%0x", self.class.description, (int) self];
 }
 
 // Nametag or identifier, based on availability
-- (NSString *) objectName
+- (NSString *) SE_objectName
 {
-    if (self.nametag)
-        return [NSString stringWithFormat:@"%@:0x%0x", self.nametag, (int) self];
-    return [NSString stringWithFormat:@"%@", self.objectIdentifier];
+    if (self.SE_nametag)
+        return [NSString stringWithFormat:@"%@:0x%0x", self.SE_nametag, (int) self];
+    return [NSString stringWithFormat:@"%@", self.SE_objectIdentifier];
 }
 
-NSString *consoleString(NSString *string, NSInteger maxLength, NSInteger indent)
+NSString *SE_consoleString(NSString *string, NSInteger maxLength, NSInteger indent)
 {
     // Build spacer
     NSMutableString *spacer = [NSMutableString stringWithString:@"\n"];
@@ -56,9 +56,9 @@ NSString *consoleString(NSString *string, NSInteger maxLength, NSInteger indent)
 }
 
 // Wrapped description
-- (NSString *) consoleDescription
+- (NSString *) SE_consoleDescription
 {
-    return consoleString(self.description, 80, 8);
+    return SE_consoleString(self.description, 80, 8);
 }
 @end
 

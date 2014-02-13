@@ -14,8 +14,8 @@
 // namespace indicators to class category methods
 
 @interface NSObject (DebuggingExtensions)
-@property (nonatomic, readonly) NSString *objectIdentifier;
-@property (nonatomic, readonly) NSString *objectName;
-@property (nonatomic, readonly) NSString *consoleDescription;
+@property (nonatomic, readonly) NSString *SE_objectIdentifier;
+@property (nonatomic, readonly) NSString *SE_objectName;
+@property (nonatomic, readonly) NSString *SE_consoleDescription;
 @end
 

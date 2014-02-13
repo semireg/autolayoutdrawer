@@ -36,9 +36,9 @@
 
 #pragma mark - Named View Support
 @interface VIEW_CLASS (Nametags)
-@property (nonatomic, readonly) NSArray *nametags;
-- (VIEW_CLASS *) viewNamed: (NSString *) aName;
-- (NSArray *) viewsNamed: (NSString *) aName;
+@property (nonatomic, readonly) NSArray *SE_nametags;
+- (VIEW_CLASS *) SE_viewNamed: (NSString *) aName;
+- (NSArray *) SE_viewsNamed: (NSString *) aName;
 @end
 
 /*
@@ -52,6 +52,6 @@
 #pragma mark - Description
 
 @interface VIEW_CLASS (DescriptionUtility)
-@property (nonatomic, readonly) NSString *readableFrame;
-- (NSString *) viewTree;
+@property (nonatomic, readonly) NSString *SE_readableFrame;
+- (NSString *) SE_viewTree;
 @end

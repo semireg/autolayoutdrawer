@@ -10,14 +10,14 @@
 #if TARGET_OS_IPHONE
 #elif TARGET_OS_MAC
 @implementation NSView (OSXBGColorExtension)
-- (NSColor *) backgroundColor
+- (NSColor *)SE_backgroundColor
 {
     CGColorRef colorRef = self.layer.backgroundColor;
     NSColor *theColor = [NSColor colorWithCGColor:colorRef];
     return theColor;
 }
 
-- (void) setBackgroundColor:(NSColor *)backgroundColor
+-(void) setSE_backgroundColor:(NSColor *)backgroundColor
 {
     [self setWantsLayer:YES];
     self.layer.backgroundColor = backgroundColor.CGColor;

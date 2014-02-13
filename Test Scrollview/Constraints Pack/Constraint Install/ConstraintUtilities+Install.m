@@ -8,16 +8,16 @@
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wundeclared-selector"
-void InstallConstraints(NSArray *constraints, NSUInteger priority, NSString *nametag)
+void SE_InstallConstraints(NSArray *constraints, NSUInteger priority, NSString *nametag)
 {
     for (NSLayoutConstraint *constraint in constraints)
     {
         if (![constraint isKindOfClass:[NSLayoutConstraint class]])
             continue;
         if (priority)
-            [constraint install:priority];
+            [constraint SE_install:priority];
         else
-            [constraint install];
+            [constraint SE_install];
         
         if ([constraint respondsToSelector:@selector(setNametag:)])
         {
@@ -26,23 +26,23 @@ void InstallConstraints(NSArray *constraints, NSUInteger priority, NSString *nam
     }
 }
 
-void InstallConstraint(NSLayoutConstraint *constraint, NSUInteger priority, NSString *nametag)
+void SE_InstallConstraint(NSLayoutConstraint *constraint, NSUInteger priority, NSString *nametag)
 {
-    InstallConstraints(@[constraint], priority, nametag);
+    SE_InstallConstraints(@[constraint], priority, nametag);
 }
 #pragma GCC diagnostic pop
 
-void RemoveConstraints(NSArray *constraints)
+void SE_RemoveConstraints(NSArray *constraints)
 {
     for (NSLayoutConstraint *constraint in constraints)
     {
         if (![constraint isKindOfClass:[NSLayoutConstraint class]])
             continue;
-        [constraint remove];
+        [constraint SE_remove];
     }
 }
 
-NSArray *ConstraintsSourcedFromIB(NSArray *constraints)
+NSArray *SE_ConstraintsSourcedFromIB(NSArray *constraints)
 {
     NSMutableArray *results = [NSMutableArray array];
     for (NSLayoutConstraint *constraint in constraints)
@@ -59,7 +59,7 @@ NSArray *ConstraintsSourcedFromIB(NSArray *constraints)
 @implementation VIEW_CLASS (HierarchySupport)
 
 // Return an array of all superviews
-- (NSArray *) superviews
+- (NSArray *) SE_superviews
 {
     NSMutableArray *array = [NSMutableArray array];
     VIEW_CLASS *view = self.superview;
@@ -73,41 +73,41 @@ NSArray *ConstraintsSourcedFromIB(NSArray *constraints)
 }
 
 // Return an array of all subviews
-- (NSArray *) allSubviews
+- (NSArray *) SE_allSubviews
 {
     NSMutableArray *array = [NSMutableArray array];
     
     for (VIEW_CLASS *view in self.subviews)
     {
         [array addObject:view];
-        [array addObjectsFromArray:[view allSubviews]];
+        [array addObjectsFromArray:[view SE_allSubviews]];
     }
     
     return array;
 }
 
 // Test if the current view has a superview relationship to a view
-- (BOOL) isAncestorOfView: (VIEW_CLASS *) aView
+- (BOOL) SE_isAncestorOfView: (VIEW_CLASS *) aView
 {
-    return [aView.superviews containsObject:self];
+    return [aView.SE_superviews containsObject:self];
 }
 
 // Return the nearest common ancestor between self and another view
-- (VIEW_CLASS *) nearestCommonAncestorToView: (VIEW_CLASS *) aView
+- (VIEW_CLASS *) SE_nearestCommonAncestorToView: (VIEW_CLASS *) aView
 {
     // Check for same view
     if (self == aView)
         return self;
     
     // Check for direct superview relationship
-    if ([self isAncestorOfView:aView])
+    if ([self SE_isAncestorOfView:aView])
         return self;
-    if ([aView isAncestorOfView:self])
+    if ([aView SE_isAncestorOfView:self])
         return aView;
     
     // Search for indirect common ancestor
-    NSArray *ancestors = self.superviews;
-    for (VIEW_CLASS *view in aView.superviews)
+    NSArray *ancestors = self.SE_superviews;
+    for (VIEW_CLASS *view in aView.SE_superviews)
         if ([ancestors containsObject:view])
             return view;
     
@@ -118,7 +118,7 @@ NSArray *ConstraintsSourcedFromIB(NSArray *constraints)
 
 #pragma mark - Constraint-Ready Views
 @implementation VIEW_CLASS (ConstraintReadyViews)
-+ (instancetype) view
++ (instancetype) SE_view
 {
     VIEW_CLASS *newView = [[VIEW_CLASS alloc] initWithFrame:CGRectZero];
     newView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -131,30 +131,30 @@ NSArray *ConstraintsSourcedFromIB(NSArray *constraints)
 #pragma mark - View Hierarchy
 @implementation NSLayoutConstraint (ViewHierarchy)
 // Cast the first item to a view
-- (VIEW_CLASS *) firstView
+- (VIEW_CLASS *) SE_firstView
 {
     return self.firstItem;
 }
 
 // Cast the second item to a view
-- (VIEW_CLASS *) secondView
+- (VIEW_CLASS *) SE_secondView
 {
     return self.secondItem;
 }
 
 // Are two items involved or not
-- (BOOL) isUnary
+- (BOOL) SE_isUnary
 {
     return self.secondItem == nil;
 }
 
 // Return NCA
-- (VIEW_CLASS *) likelyOwner
+- (VIEW_CLASS *) SE_likelyOwner
 {
-    if (self.isUnary)
-        return self.firstView;
+    if (self.SE_isUnary)
+        return self.SE_firstView;
     
-    return [self.firstView nearestCommonAncestorToView:self.secondView];
+    return [self.SE_firstView SE_nearestCommonAncestorToView:self.SE_secondView];
 }
 
 
@@ -164,7 +164,7 @@ NSArray *ConstraintsSourcedFromIB(NSArray *constraints)
  When a view is archived, it archives some but not all constraints in its -constraints array.  The value of shouldBeArchived informs UIView if a particular constraint should be archived by UIView / NSView. If a constraint is created at runtime in response to the state of the object, it isn't appropriate to archive the constraint - rather you archive the state that gives rise to the constraint.  Since the majority of constraints that should be archived are created in Interface Builder (which is smart enough to set this prop to YES), the default value for this property is NO.
  */
 
-- (ConstraintSourceType) sourceType
+- (ConstraintSourceType) SE_sourceType
 {
     ConstraintSourceType result = ConstraintSourceTypeCustom;
     if (self.shouldBeArchived)
@@ -182,18 +182,18 @@ NSArray *ConstraintsSourcedFromIB(NSArray *constraints)
 
 #pragma mark - Self Install
 @implementation NSLayoutConstraint (SelfInstall)
-- (BOOL) install
+- (BOOL) SE_install
 {
     // Handle Unary constraint
-    if (self.isUnary)
+    if (self.SE_isUnary)
     {
         // Add weak owner reference
-        [self.firstView addConstraint:self];
+        [self.SE_firstView addConstraint:self];
         return YES;
     }
     
     // Install onto nearest common ancestor
-    VIEW_CLASS *view = [self.firstView nearestCommonAncestorToView:self.secondView];
+    VIEW_CLASS *view = [self.SE_firstView SE_nearestCommonAncestorToView:self.SE_secondView];
     if (!view)
     {
         NSLog(@"Error: Constraint cannot be installed. No common ancestor between items.");
@@ -205,13 +205,13 @@ NSArray *ConstraintsSourcedFromIB(NSArray *constraints)
 }
 
 // Set priority and install
-- (BOOL) install: (float) priority
+- (BOOL) SE_install: (float) priority
 {
     self.priority = priority;
-    return [self install];
+    return [self SE_install];
 }
 
-- (void) remove
+- (void) SE_remove
 {
     if (![self.class isEqual:[NSLayoutConstraint class]])
     {
@@ -219,15 +219,15 @@ NSArray *ConstraintsSourcedFromIB(NSArray *constraints)
         return;
     }
     
-    if (self.isUnary)
+    if (self.SE_isUnary)
     {
-        VIEW_CLASS *view = self.firstView;
+        VIEW_CLASS *view = self.SE_firstView;
         [view removeConstraint:self];
         return;
     }
     
     // Remove from preferred recipient
-    VIEW_CLASS *view = [self.firstView nearestCommonAncestorToView:self.secondView];
+    VIEW_CLASS *view = [self.SE_firstView SE_nearestCommonAncestorToView:self.SE_secondView];
     if (!view) return;
     
     // If the constraint not on view, this is a no-op

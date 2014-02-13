@@ -17,6 +17,6 @@
 #if TARGET_OS_IPHONE
 #elif TARGET_OS_MAC
 @interface NSView (OSXBGColorExtension)
-@property (nonatomic, weak) NSColor *backgroundColor;
+@property (nonatomic, weak) NSColor *SE_backgroundColor;
 @end
 #endif

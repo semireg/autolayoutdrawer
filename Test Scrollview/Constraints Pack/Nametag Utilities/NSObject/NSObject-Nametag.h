@@ -18,6 +18,6 @@
 // namespace indicators to class category methods
 
 @interface NSObject (Nametags)
-@property (nonatomic, strong) NSString *nametag;
+@property (nonatomic, strong) NSString *SE_nametag;
 @end
 

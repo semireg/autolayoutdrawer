@@ -91,7 +91,7 @@
         return nil;
     
     // Establish firstView.firstAttribute
-    NSString *firstView = self.firstView.objectName;
+    NSString *firstView = self.SE_firstView.SE_objectName;
     NSString *firstAttribute = [NSLayoutConstraint nameForLayoutAttribute:self.firstAttribute];
     NSString *firstString = [NSString stringWithFormat:@"<%@>.%@", firstView, firstAttribute];
     
@@ -99,11 +99,11 @@
     NSString *relationString =  [NSLayoutConstraint nameForLayoutRelation:self.relation];
     
     // Handle Unary Constraints
-    if (self.isUnary)
+    if (self.SE_isUnary)
         return [NSString stringWithFormat:@"%@ %@ %0.01f", firstString, relationString, self.constant];
     
     // Establish secondView.secondAttribute
-    NSString *secondView = self.secondView.objectName;
+    NSString *secondView = self.SE_secondView.SE_objectName;
     NSString *secondAttribute = [NSLayoutConstraint nameForLayoutAttribute:self.secondAttribute];
     NSString *secondString = [NSString stringWithFormat:@"<%@>.%@", secondView, secondAttribute];
     
@@ -131,7 +131,7 @@
     
     // Note source
     NSString *interfaceBuilderString = @"";
-    switch (self.sourceType)
+    switch (self.SE_sourceType)
     {
         case ConstraintSourceTypeInferred:
             interfaceBuilderString = @"\n         ** Added by IB (inferred position)";
@@ -164,8 +164,8 @@
 - (NSString *) visualFormat
 {
     // I've skipped priorities for these, although that's easily added
-    NSString *item1 = self.firstView.objectName;
-    NSString *item2 = self.secondView.objectName;    
+    NSString *item1 = self.SE_firstView.SE_objectName;
+    NSString *item2 = self.SE_secondView.SE_objectName;
     NSString *relation = [NSLayoutConstraint nameForLayoutRelation:self.relation];
     
     // Don't show == relations
@@ -176,8 +176,8 @@
     NSString *hOrV = IS_HORIZONTAL_ATTRIBUTE(self.firstAttribute) ? @"H:" : @"V:";
 
     // Superview relationships
-    BOOL secondViewIsSuperview = (self.firstView.superview == self.secondView);
-    BOOL firstViewIsSuperview = (self.secondView.superview == self.firstView);
+    BOOL secondViewIsSuperview = (self.SE_firstView.superview == self.SE_secondView);
+    BOOL firstViewIsSuperview = (self.SE_secondView.superview == self.SE_firstView);
     
     // Center is not supported, but I've added a little tweak here
     if (self.firstItem && self.secondItem &&
@@ -212,7 +212,7 @@
     if (IS_SIZE_ATTRIBUTE(self.firstAttribute))
     {
         // Handle unary size case
-        if (self.isUnary)
+        if (self.SE_isUnary)
         {
             return [NSString stringWithFormat:@"%@[%@(%@%d)]", hOrV, item1, relation, (int) self.constant];
         }
@@ -238,7 +238,7 @@
     }
     
     // Must not be unary, that case is already handled -- size only
-    if (self.isUnary)
+    if (self.SE_isUnary)
         return nil;
     
     // Edge constraint -- supported is top/bottom, leading/trailing
@@ -268,7 +268,7 @@
         return nil;
     
     // Must have common ancestor. Illegal otherwise
-    if (!([self.firstView nearestCommonAncestorToView:self.secondView]))
+    if (!([self.SE_firstView SE_nearestCommonAncestorToView:self.SE_secondView]))
         return nil;
     
     // Odd multipliers not supported -- although easily added for odd cases
@@ -369,14 +369,14 @@
 {
     NSString *firstObject = [[dict allKeysForObject:self.firstItem] lastObject];
     if (!firstObject)
-        firstObject = [NSString stringWithFormat:@"<%@>", self.firstView.objectIdentifier];
+        firstObject = [NSString stringWithFormat:@"<%@>", self.SE_firstView.SE_objectIdentifier];
     
     // Handle possible unary constraint
     NSString *secondObject = @"";
     if (self.secondItem)
         secondObject = [[dict allKeysForObject:self.secondItem] lastObject];
     if (!secondObject)
-        secondObject = [NSString stringWithFormat:@"<%@>", self.secondView.objectIdentifier];
+        secondObject = [NSString stringWithFormat:@"<%@>", self.SE_secondView.SE_objectIdentifier];
     
     // Build the description string
     NSMutableString *description = [NSMutableString string];
@@ -529,7 +529,7 @@
     if ([first isEqualToString:second])
         return [NSString stringWithFormat:@"%@%@ to Superview's %@", comparator, first, first];
     
-    if ([self.firstView isAncestorOfView:self.secondView])
+    if ([self.SE_firstView SE_isAncestorOfView:self.SE_secondView])
         return [NSString stringWithFormat:@"%@%@ to Superview's %@", comparator, second, first];
     
     return [NSString stringWithFormat:@"%@%@ to Superview's %@", comparator, first, second];
@@ -538,13 +538,13 @@
 // Describe the constraint
 - (NSString *) constraintDescription
 {
-    if (self.isUnary)
+    if (self.SE_isUnary)
         return [self describeUnaryConstraint];
     
     if (self.firstItem == self.secondItem)
         return [self describeSelfConstraint];
     
-    BOOL superviewRelationship = ([self.firstView isAncestorOfView:self.secondView] || [self.secondView isAncestorOfView:self.firstView]);
+    BOOL superviewRelationship = ([self.SE_firstView SE_isAncestorOfView:self.SE_secondView] || [self.SE_secondView SE_isAncestorOfView:self.SE_firstView]);
     if (superviewRelationship)
         return [self describeSuperviewBasedConstraint];
     
@@ -555,8 +555,8 @@
 {
     for (NSLayoutConstraint *constraint in constraints)
     {
-        // Check for existing nametag
-        if (constraint.nametag)
+        // Check for existing SE_nametag
+        if (constraint.SE_nametag)
             continue;
 
         // Is it a standard constraint?
@@ -570,12 +570,12 @@
                 name = [name substringFromIndex:2];
             if ([name hasPrefix:@"UI"])
                 name = [name substringFromIndex:2];
-            constraint.nametag = name;
+            constraint.SE_nametag = name;
             continue;
         }
 
         // Assign the description
-        constraint.nametag = constraint.constraintDescription;
+        constraint.SE_nametag = constraint.constraintDescription;
     }
 }
 @end
@@ -599,7 +599,7 @@
         classDesc = [classDesc substringFromIndex:2];
     
     // Skip if this instance uses a custom name
-    if (self.nametag && ![self.nametag hasPrefix:classDesc])
+    if (self.SE_nametag && ![self.SE_nametag hasPrefix:classDesc])
             return;
     
     NSNumber *number = dict[classDesc];
@@ -608,10 +608,10 @@
     dict[classDesc] = number;
 }
 
-// Autogenerate nametags for each view
+// Autogenerate SE_nametags for each view
 - (void) addViewNames: (NSMutableDictionary *) dict
 {
-    if (self.nametag)
+    if (self.SE_nametag)
     {
         for (VIEW_CLASS *view in self.subviews)
             [view addViewNames:dict];
@@ -627,25 +627,25 @@
     [self registerView:dict];
     NSNumber *number = dict[classDesc];
     NSString *viewName = [NSString stringWithFormat:@"%@%@", classDesc, number];
-    self.nametag = viewName;
+    self.SE_nametag = viewName;
     
     for (VIEW_CLASS *view in self.subviews)
         [view addViewNames:dict];
 }
 
-// Entry point for generating nametags
+// Entry point for generating SE_nametags
 - (void) addViewNames
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     
     // Exhaustively add any items
-    if (self.nametag)
+    if (self.SE_nametag)
         [self registerView:dict];
 
     // Add all subviews (recursively gathered)
-    for (VIEW_CLASS *view in self.allSubviews)
+    for (VIEW_CLASS *view in self.SE_allSubviews)
     {
-        if (view.nametag)
+        if (view.SE_nametag)
             [view registerView:dict];
     }
     
@@ -695,15 +695,15 @@
 
 - (NSString *) superviewsDescription
 {
-    NSArray *superviews = self.superviews;
+    NSArray *superviews = self.SE_superviews;
     if (superviews.count > 2)
         superviews = [superviews subarrayWithRange:NSMakeRange(0, 2)];
     
     NSMutableString *ancestry = [NSMutableString string];
     [ancestry appendString:self.class.description];
     for (VIEW_CLASS *view in superviews)
-        [ancestry appendFormat:@" : <%@>", view.objectName];
-    if (self.superviews.count > 2)
+        [ancestry appendFormat:@" : <%@>", view.SE_objectName];
+    if (self.SE_superviews.count > 2)
         [ancestry appendString:@" ..."];
     
     return ancestry;
@@ -712,14 +712,14 @@
 - (NSDictionary *) participatingViews
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    dict[self.objectName] = self;
+    dict[self.SE_objectName] = self;
     
     for (NSLayoutConstraint *constraint in self.constraints)
     {
-        dict[constraint.firstView.objectName] = constraint.firstView;
+        dict[constraint.SE_firstView.SE_objectName] = constraint.SE_firstView;
         if (!constraint.secondItem)
             continue;
-        dict[constraint.secondView.objectName] = constraint.secondView;
+        dict[constraint.SE_secondView.SE_objectName] = constraint.SE_secondView;
     }
     
     return dict;
@@ -763,7 +763,7 @@
 
 - (void) listConstraints
 {
-    printf("<%s> (%d constraints)\n", self.objectName.UTF8String, (int) self.constraints.count);
+    printf("<%s> (%d constraints)\n", self.SE_objectName.UTF8String, (int) self.constraints.count);
     int i = 1;
     for (NSLayoutConstraint *constraint in self.constraints)
         printf("%2d. @%4d: %s\n", i++, (int) constraint.priority, constraint.stringValue.UTF8String);
@@ -788,7 +788,7 @@
     NSMutableString *description = [NSMutableString string];
     
     // Specify view address, class and superclass
-    [description appendFormat:@"<%@>\n  %@ : %@", self.objectName, self.class.description, self.superclass.description];
+    [description appendFormat:@"<%@>\n  %@ : %@", self.SE_objectName, self.class.description, self.superclass.description];
     
     // Test for Autosizing and Ambiguous Layout
     if (self.translatesAutoresizingMaskIntoConstraints)
@@ -871,7 +871,7 @@
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     for (NSLayoutConstraint *constraint in self.constraints)
     {
-        NSString *key = constraint.nametag;
+        NSString *key = constraint.SE_nametag;
         if (!key)
             key = @"Unlabeled Constraints";
         
@@ -925,14 +925,14 @@
                 [description appendFormat:@"     Format: %@\n", constraint.visualFormat];
             
             // Show description ???
-            [description appendFormat:    @"     Descr: %@\n", constraint.consoleDescription];
+            [description appendFormat:    @"     Descr: %@\n", constraint.SE_consoleDescription];
         }
     }
     
     // Referencing Constraints
     [description appendFormat:@"\n"];
     
-    NSArray *references = self.referencingConstraints;
+    NSArray *references = self.SE_referencingConstraints;
     if (references.count)
         [description appendString:@"Other Constraint References to View\n"];
     
@@ -940,14 +940,14 @@
     for (NSLayoutConstraint *constraint in references)
     {
         // List each likely owner (guaranteed if install)
-        VIEW_CLASS *nca = [constraint.firstView nearestCommonAncestorToView:constraint.secondView];
+        VIEW_CLASS *nca = [constraint.SE_firstView SE_nearestCommonAncestorToView:constraint.SE_secondView];
         if (!nca) continue;
 
         // List each constraint
         [description appendFormat:@"%2d. ", i++];
         
         // Owner
-        [description appendFormat:@"<%@> : ", nca.objectName];
+        [description appendFormat:@"<%@> : ", nca.SE_objectName];
 
         // Priority
         [description appendFormat:@"@%4d ", (int) constraint.priority];
@@ -955,9 +955,9 @@
         // Show constraint
         [description appendFormat:@"%@", constraint.stringValue];
         
-        // Show nametag
-        if (constraint.nametag)
-            [description appendFormat:@" (%@)", constraint.nametag];
+        // Show SE_nametag
+        if (constraint.SE_nametag)
+            [description appendFormat:@" (%@)", constraint.SE_nametag];
         
         [description appendString:@"\n"];
     }
@@ -1030,7 +1030,7 @@
     
     if (addNames)
     {
-        self.nametag = @"Main View";
+        self.SE_nametag = @"Main View";
         [self addViewNames];
         [self addConstraintNames];
     }
@@ -1211,9 +1211,9 @@ NSString *_AffineTransformDegreesString(CGAffineTransform t)
 {
     NSMutableString *description = [NSMutableString string];
     
-    // Nametag or class
-    if (self.nametag)
-        [description appendFormat:@"%@\n", self.nametag];
+    // SE_nametag or class
+    if (self.SE_nametag)
+        [description appendFormat:@"%@\n", self.SE_nametag];
     else
         [description appendFormat:@"%@\n", self.class.description];
     
@@ -1241,7 +1241,7 @@ NSString *_AffineTransformDegreesString(CGAffineTransform t)
     UIGraphicsBeginImageContextWithOptions(self.bounds.size, NO, 0.0);
     [string drawInRect:CGRectInset(self.bounds, 4, 4)];
     
-    if ([self.nametag isEqualToString:@"Main View"])
+    if ([self.SE_nametag isEqualToString:@"Main View"])
         [self drawConstraintLinesOnPrimaryView];
     
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();

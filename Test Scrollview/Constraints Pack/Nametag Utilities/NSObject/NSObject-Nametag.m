@@ -14,13 +14,13 @@
 #endif
 
 @implementation NSObject (Nametags)
-- (id) nametag
+- (id) SE_nametag
 {
-    return objc_getAssociatedObject(self, @selector(nametag));
+    return objc_getAssociatedObject(self, @selector(SE_nametag));
 }
 
-- (void) setNametag: (NSString *) nametag
+- (void) setSE_nametag:(NSString *)nametag
 {
-    objc_setAssociatedObject(self, @selector(nametag), nametag, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, @selector(SE_nametag), nametag, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 @end
